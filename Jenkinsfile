@@ -45,7 +45,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/kingofdarknesss/docker-terraform-jenkins.git"
+                            git "https://github.com/kingofdarknesss/terrform-standalone.git"
                         }
                     }
                 }
