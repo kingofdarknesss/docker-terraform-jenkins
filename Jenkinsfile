@@ -6,6 +6,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        SONAR_HOME=tool 'sonar-scanner'
     }
 
    agent  any
@@ -19,6 +20,14 @@ pipeline {
          stage('SCM') {
             steps {
                git changelog: false, poll: false, url: 'https://github.com/kingofdarknesss/docker-spring-boot-java-web-service-example.git'
+            }
+        }
+          stage('Sonarqube analysis') {
+            steps {
+               withsonarQubeEnv('sonar-server){
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=DockerJenkins \
+                    -Dsonar.java.binaries=. \
+                    -Dsonar.projectKey=DockerJenkins '''
             }
         }
         stage('Maven Build') {
