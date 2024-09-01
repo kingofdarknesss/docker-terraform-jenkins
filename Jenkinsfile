@@ -24,7 +24,7 @@ pipeline {
         }
           stage('Sonarqube analysis') {
             steps {
-               withsonarQubeEnv('sonar-server){
+               withSonarQubeEnv('sonar-server){
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=DockerJenkins \
                     -Dsonar.java.binaries=. \
                     -Dsonar.projectKey=DockerJenkins '''
