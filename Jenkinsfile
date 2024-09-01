@@ -18,7 +18,7 @@ pipeline {
     stages {
          stage('SCM') {
             steps {
-               git changelog: false, poll: false, url: 'https://github.com/jaiswaladi246/docker-spring-boot-java-web-service-example.git'
+               git changelog: false, poll: false, url: 'https://github.com/kingofdarknesss/docker-spring-boot-java-web-service-example.git'
             }
         }
         stage('Maven Build') {
