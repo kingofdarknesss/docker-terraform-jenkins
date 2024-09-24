@@ -21,15 +21,7 @@ pipeline {
                 git changelog: false, poll: false, url: 'https://github.com/kingofdarknesss/docker-spring-boot-java-web-service-example.git'
             }
         }
-        stage('Sonarqube analysis') {
-            steps {
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=DockerJenkins \
-                    -Dsonar.java.binaries=. \
-                    -Dsonar.projectKey=DockerJenkins '''
-                }
-            }
-        }
+       
         stage('Maven Build') {
             steps {
                 sh 'mvn clean install'
